@@ -1,81 +1,711 @@
 <!DOCTYPE html>
-<html lang="en-US" dir="ltr" class="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>豆包网页版入口 - 豆包AI网页版</title>
-<meta name="description" content="豆包是字节跳动旗下、基于自研云雀大模型推出的全场景AI助手，覆盖聊天、写作、翻译、绘画、音视频生成等任务，目标是成为工作和生活的万能搭档。">
-<meta property="og:title" content="豆包网页版入口官网 - 豆包AI网页版在线使用">
-<meta property="og:description" content="豆包是字节跳动旗下、基于自研云雀大模型推出的全场景AI助手，覆盖聊天、写作、翻译、绘画、音视频生成等任务，目标是成为工作和生活的万能搭档。">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://doubaoai.qingmo.net">
-<link rel="shortcut icon" href="https://lf-flow-web-cdn.doubao.com/obj/flow-doubao/samantha/logo-icon-white-bg.png">
-<link rel="preload stylesheet" href="./style.css" as="style">
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>扣子空间 - Coze AI零代码应用开发平台</title>
+    <meta name="keywords" content="扣子空间,扣子空间网页版,Coze,字节跳动AI,Bot开发平台,AI机器人创建,AI应用开发,Coze网页版入口">
+    <meta name="description" content="扣子空间(Coze)是字节跳动推出的专业AI Bot开发平台，提供可视化Bot编辑器、插件集成、知识库、工作流等强大功能。通过扣子空间网页版入口即可免费创建和部署智能AI机器人，支持一键发布到Discord、飞书、微信群等多平台。">
+    <link rel="shortcut icon" href="https://lf-coze-web-cdn.coze.cn/obj/coze-web-cn/obric/coze/favicon.1970.png" />
+    <link rel="preconnect" href="https://cdn.bootcdn.net">
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- 内联基础样式 -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: rgb(241 245 249);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 头部样式 */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 20px;
+        }
+        
+        .logo img {
+            height: 40px;
+        }
+        
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: #0066ff;
+        }
+        
+        /* 英雄区域 */
+        .hero {
+            padding: 4rem 0;
+            background: #fff;
+            color: black;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .hero-title-box {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .img-box img {
+            width: 100px;
+            height: 100px;
+            border-radius: 16px;
+            border: 1px solid #e5e7eb;
+            background: white;
+            padding: 8px;
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            background: #111;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align:left;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .hero-desc {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size:1.5rem;
+            justify-content:center;
+        }
+        
+        .btn-primary {
+            background: #8b3dff;
+            color: #fff;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 102, 255, 0.3);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #0066ff;
+            border: 1px solid #0066ff;
+        }
+        
+        .btn-secondary:hover {
+            background: #f0f7ff;
+            transform: translateY(-2px);
+        }
+        
+        .hero-image {
+            width: 100%;
+            max-width: 500px;
+            border-radius:20px;
+            border: 1px solid #e5e7eb;
+            padding: 5px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 功能区域 */
+        .section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1e3c72;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .feature-title {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: #1e3c72;
+        }
+        
+        .feature-title i {
+            color: #0066ff;
+            margin-right: 0.5rem;
+        }
+        
+        /* 优势区域 */
+        .advantages-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .advantage-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+
+        }
+        
+        .advantage-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #1e3c72;
+        }
+        
+        /* FAQ区域 */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .faq-toggle {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            background: none;
+            border: none;
+            text-align: left;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .faq-toggle:hover {
+            background: #f8f9fa;
+        }
+        
+        .faq-content {
+            padding: 0 1.5rem 1.5rem;
+            display: none;
+            color: #666;
+        }
+        
+        .faq-content.active {
+            display: block;
+        }
+        
+        /* 新闻区域 */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .news-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .news-content {
+            padding: 1.5rem;
+        }
+        
+        .news-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #1e3c72;
+        }
+        
+        .news-date {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* 返回顶部 */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #0066ff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+        }
+        
+        .back-to-top:hover {
+            transform: scale(1.1);
+        }
+        
+        .back-to-top.show {
+            display: flex;
+        }
+        
+        /* 页脚 */
+        .footer {
+            background: #fff;
+            color: #555;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .nav-list {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            .btn{
+                width: 100%;
+            }
+        }
+        
+        /* 平台图标样式 */
+        .platform-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .platform-icon {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #f0f7ff;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .platform-icon i {
+            color: #0066ff;
+        }
+    </style>
 </head>
 <body>
-    <div id="app">
-    <div class="Layout" data-v-b2cf3e0b="">
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="./logo.png" alt="Logo" />
+            </div>
+            <nav class="nav" aria-label="主导航">
+                <ul class="nav-list">
+                    <li><a href="#features" class="nav-link">核心功能</a></li>
+                    <li><a href="#advantages" class="nav-link">平台优势</a></li>
+                    <li><a href="#faq" class="nav-link">常见问题</a></li>
+                    <li><a href="#news" class="nav-link">最新动态</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-<header class="VPNav" data-v-b2cf3e0b="" data-v-7e5bc4a5="">
-        <div class="VPNavBar" data-v-7e5bc4a5="" data-v-7683ced7="">
-            <div class="container" data-v-7683ced7="">
-                <div class="title" data-v-7683ced7="">
-                    <div class="VPNavBarTitle" data-v-7683ced7="" data-v-4d981103="">
-        <a class="title" href="/" data-v-4d981103=""><img class="VPImage logo" src="./logo.png" alt="LOGO" data-v-6db2186b=""></a>
-        </div></div></div></div><!----></header>
+    <main>
+        <section class="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <div class="hero-title-box">
+                        <div class="img-box">
+                            <img src="https://lf-coze-web-cdn.coze.cn/obj/coze-web-cn/obric/coze/favicon.1970.png" alt="扣子空间" />
+                        </div>
+                        <div>
+                            <h1 class="hero-title">扣子空间</h1>
+                            <p class="hero-subtitle">Coze AI智能体开发平台</p>
+                        </div>
+                    </div>
+                    <p class="hero-desc">
+                        无需编程基础，可视化创建专属AI机器人；集成插件、知识库和工作流，一键发布到多平台
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="https://dis.csqixiang.cn/unpo/cozeszzn.html" 
+                           class="btn btn-primary" 
+                           rel="nofollow" 
+                           target="_blank"
+                           aria-label="访问扣子空间网页版">
+                           <i class="fas fa-external-link-alt"></i>扣子空间官网入口
+                        </a>
+
+                    </div>
+
+                </div>
+                <div class="hero-image-container">
+                    <img src="https://s1.wp.com/mshots/v1/https://www.coze.cn" alt="扣子空间" class="hero-image">
+                </div>
+            </div>
+        </section>
+
+        <!-- 核心功能部分 -->
+        <section id="features" class="section features">
+            <div class="container">
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3 class="feature-title">
+                            <i class="fas fa-robot"></i>
+                            可视化Bot编辑器
+                        </h3>
+                        <p>无需编程经验，通过拖拽式界面创建AI机器人。自定义机器人的性格、回复风格和专业领域，轻松构建符合需求的智能助手。</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3 class="feature-title">
+                            <i class="fas fa-plug"></i>
+                            丰富插件生态系统
+                        </h3>
+                        <p>扣子空间内置200+实用插件，支持联网搜索、图像生成、代码执行、数据分析等能力。一键集成第三方API，扩展机器人功能边界。</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3 class="feature-title">
+                            <i class="fas fa-database"></i>
+                            知识库与长期记忆
+                        </h3>
+                        <p>上传文档、网页链接或手动录入信息构建专属知识库。机器人可基于知识库提供精准回答，支持PDF、Word、Excel、TXT等多种格式。</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3 class="feature-title">
+                            <i class="fas fa-project-diagram"></i>
+                            可视化工作流设计
+                        </h3>
+                        <p>通过流程图式界面设计复杂业务逻辑，支持条件判断、循环、变量操作等高级功能，实现多步骤自动化任务处理。</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3 class="feature-title">
+                            <i class="fas fa-share-alt"></i>
+                            多平台一键部署
+                        </h3>
+                        <p>一键将机器人发布到Discord、飞书、微信群、Web网站、API接口等平台。支持自定义机器人外观和交互方式。</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3 class="feature-title">
+                            <i class="fas fa-chart-line"></i>
+                            数据监控与分析
+                        </h3>
+                        <p>扣子空间提供详细的机器人使用统计、对话日志和性能分析。监控机器人运行状态，优化对话质量，了解用户交互模式。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 平台优势部分 -->
+        <section id="advantages" class="section advantages">
+            <div class="container">
+                <h2 class="section-title">扣子空间平台优势</h2>
+                <div class="advantages-list">
+                    <div class="advantage-item">
+                        <h3 class="advantage-title">字节跳动强大技术底座</h3>
+                        <p>基于字节跳动先进的AI模型和技术积累，扣子空间集成了最前沿的自然语言处理和多模态能力，确保机器人智能水平行业领先。</p>
+                    </div>
+                    <div class="advantage-item">
+                        <h3 class="advantage-title">完全免费使用</h3>
+                        <p>扣子空间基础功能完全免费，个人用户和中小团队可无限制创建和部署AI机器人。高级功能提供灵活的付费方案，性价比极高。</p>
+                    </div>
+                    <div class="advantage-item">
+                        <h3 class="advantage-title">中文场景深度优化</h3>
+                        <p>专为中文用户设计，深度理解中文语境和文化背景。提供丰富的本土化插件和模板，更适合中国开发者使用。</p>
+                    </div>
+                    <div class="advantage-item">
+                        <h3 class="advantage-title">低代码快速开发</h3>
+                        <p>可视化开发界面大幅降低AI应用开发门槛，非技术人员也能在几分钟内创建功能完整的AI机器人，加速企业智能化转型。</p>
+                    </div>
+                    <div class="advantage-item">
+                        <h3 class="advantage-title">企业级安全与合规</h3>
+                        <p>提供数据加密、访问控制、审计日志等企业级安全功能。符合中国数据安全法规要求，支持私有化部署选项。</p>
+                    </div>
+                    <div class="advantage-item">
+                        <h3 class="advantage-title">活跃的开发者社区</h3>
+                        <p>拥有丰富的教程、模板和案例库，活跃的开发者社区共享插件和最佳实践，帮助用户快速上手并解决开发难题。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ部分 -->
+        <section id="faq" class="section faq">
+            <div class="container">
+                <h2 class="section-title">常见问题解答</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-toggle" aria-expanded="false" aria-controls="faq1-content">
+                            <span>扣子空间是完全免费的吗？</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-content" id="faq1-content">
+                            <p>是的，扣子空间基础功能完全免费开放。个人用户和中小团队可以免费创建和部署AI机器人，享受大部分核心功能。对于需要更高调用量、专属支持或企业级功能的用户，扣子空间也提供了付费升级方案。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-toggle" aria-expanded="false" aria-controls="faq2-content">
+                            <span>没有编程基础能使用扣子空间吗？</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-content" id="faq2-content">
+                            <p>完全可以！扣子空间采用可视化开发界面，通过拖拽和配置即可创建AI机器人，无需编写代码。平台提供了丰富的模板和引导教程，帮助非技术用户快速上手。同时，对于开发者用户，扣子空间也支持API调用和代码级自定义。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-toggle" aria-expanded="false" aria-controls="faq3-content">
+                            <span>扣子空间支持哪些发布平台？</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-content" id="faq3-content">
+                            <p>扣子空间支持将机器人一键发布到多个平台：Discord、飞书、微信公众号、企业微信、Web网站（通过嵌入代码）、API接口等。未来还将支持更多国内外主流通讯和协作平台，满足不同场景的部署需求。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-toggle" aria-expanded="false" aria-controls="faq4-content">
+                            <span>扣子空间与豆包有什么区别？</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-content" id="faq4-content">
+                            <p>豆包是面向终端用户的AI助手产品，而扣子空间是面向开发者和企业的AI Bot开发平台。简单来说，豆包是"用AI"，扣子空间是"造AI"。通过扣子空间，用户可以创建类似豆包的定制化AI助手，但具有更专精的领域知识和个性化功能。</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-toggle" aria-expanded="false" aria-controls="faq5-content">
+                            <span>如何保证扣子空间机器人的数据安全？</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-content" id="faq5-content">
+                            <p>扣子空间采用多重安全措施：1) 数据传输全程加密；2) 支持知识库内容脱敏处理；3) 提供访问权限控制；4) 符合中国数据安全法规要求。对于企业用户，还支持私有化部署方案，确保数据完全自主控制。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 最新动态部分 -->
+        <section id="news" class="section news">
+            <div class="container">
+                <h2 class="section-title">扣子空间最新动态</h2>
+                <div class="news-grid">
+                    <article class="news-card">
+                        <div class="news-content">
+                            <h3 class="news-title">扣子空间推出多模态增强版，支持图像和语音交互</h3>
+                            <div class="news-date">
+                                <i class="fas fa-calendar"></i>
+                                <time datetime="2025-12-10">2025年12月10日</time>
+                            </div>
+                            <p>扣子空间最新版本支持图像识别、生成和语音交互功能，开发者可以创建能够"看"和"听"的AI机器人，拓展了视觉和语音AI应用场景。</p>
+                        </div>
+                    </article>
+                    <article class="news-card">
+                        <div class="news-content">
+                            <h3 class="news-title">扣子空间企业版正式发布，支持私有化部署</h3>
+                            <div class="news-date">
+                                <i class="fas fa-calendar"></i>
+                                <time datetime="2025-11-25">2025年11月25日</time>
+                            </div>
+                            <p>扣子空间企业版提供私有化部署方案，支持企业内部数据源集成和定制化开发，满足金融、医疗等对数据安全要求高的行业需求。</p>
+                        </div>
+                    </article>
+                    <article class="news-card">
+                        <div class="news-content">
+                            <h3 class="news-title">扣子空间插件市场突破500个插件</h3>
+                            <div class="news-date">
+                                <i class="fas fa-calendar"></i>
+                                <time datetime="2025-10-18">2025年10月18日</time>
+                            </div>
+                            <p>扣子空间插件市场迎来里程碑，可用插件数量突破500个，涵盖电商、客服、教育、娱乐等各个领域，大幅扩展了AI机器人的能力边界。</p>
+                        </div>
+                    </article>
+                    <article class="news-card">
+                        <div class="news-content">
+                            <h3 class="news-title">扣子空间与多所高校合作推出AI教育计划</h3>
+                            <div class="news-date">
+                                <i class="fas fa-calendar"></i>
+                                <time datetime="2025-09-30">2025年9月30日</time>
+                            </div>
+                            <p>扣子空间与清华大学、浙江大学等多所高校合作，推出AI应用开发课程和实验室，培养下一代AI开发人才，推动AI技术普及。</p>
+                        </div>
+                    </article>
+                    <article class="news-card">
+                        <div class="news-content">
+                            <h3 class="news-title">扣子空间全球用户突破200万</h3>
+                            <div class="news-date">
+                                <i class="fas fa-calendar"></i>
+                                <time datetime="2025-08-15">2025年8月15日</time>
+                            </div>
+                            <p>扣子空间全球注册开发者数量突破200万，覆盖150多个国家和地区，成为全球增长最快的AI开发平台之一。</p>
+                        </div>
+                    </article>
+                    <article class="news-card">
+                        <div class="news-content">
+                            <h3 class="news-title">扣子空间推出协作开发功能</h3>
+                            <div class="news-date">
+                                <i class="fas fa-calendar"></i>
+                                <time datetime="2025-07-22">2025年7月22日</time>
+                            </div>
+                            <p>新版本支持团队协作开发，多人可同时编辑同一机器人项目，实时查看更改，提升企业团队开发效率和项目管理能力。</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="copyright">
+                <p>扣子空间(Coze) - 字节跳动AI智能体开发平台</p>
+                <p style="margin-top: 10px; font-size: 0.9rem;">&copy; kouzikongjian.github.io</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ交互功能
+        document.querySelectorAll('.faq-toggle').forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const content = toggle.nextElementSibling;
+                const icon = toggle.querySelector('i');
+                
+                content.classList.toggle('active');
+                if (content.classList.contains('active')) {
+                    icon.style.transform = 'rotate(180deg)';
+                } else {
+                    icon.style.transform = 'rotate(0)';
+                }
+            });
+        });
         
-<div class="VPContent is-home" id="VPContent" data-v-b2cf3e0b="" data-v-a494bd1d="">
-    <div class="VPHome" data-v-a494bd1d="" data-v-d82743a8="">
-<div class="VPHero has-image VPHomeHero" data-v-d82743a8="" data-v-fd2650d5="">
-    <div class="container" data-v-fd2650d5=""><div class="main" data-v-fd2650d5="" >
-    <h1 class="name" data-v-fd2650d5="" style="display: flex; align-items: center; white-space: nowrap;font-size:2rem">
-        <img src="https://lf-flow-web-cdn.doubao.com/obj/flow-doubao/samantha/logo-icon-white-bg.png" alt="豆包" style="height:50px">
-    <span style="color:#111;">豆包</span></h1>
-    <p class="text" data-v-fd2650d5="" style="line-height:1.2rem;margin:10px 0;"><span style="font-size:1.3rem;font-weight:800;">字节跳动旗下AI智能助手</span></p>
-
-<div class="actions" data-v-fd2650d5="">
-<div class="action" data-v-fd2650d5=""><a class="VPButton medium brand" href="https://ai.iitab.link" target="_blank" rel="noreferrer" data-v-fd2650d5="" data-v-567ba664="">豆包网页版入口</a></div>
-<div class="action" data-v-fd2650d5=""><a class="VPButton medium alt" href="https://ugapk.com/daR3r" target="_blank" rel="noreferrer" data-v-fd2650d5="" data-v-567ba664="">豆包电脑版下载</a></div>
-</div>
-    </div>
- 
-<div class="image" data-v-fd2650d5=""><div class="image-container" data-v-fd2650d5=""><div class="image-bg" data-v-fd2650d5=""></div><img class="VPImage image-src" src="./doubao.webp" alt="豆包网页版" data-v-6db2186b="" style="border-radius:15px;background: #fff;padding: 5px;border: 1px solid #eee;"></div></div></div></div> 
-
-<div class="VPFeatures VPHomeFeatures" data-v-d82743a8="" data-v-ba861f23=""><div class="container" data-v-ba861f23="">
-    
-    <div class="items" data-v-ba861f23="">
-    
-<div class="grid-3 item" data-v-ba861f23="">
-    <span class="VPLink VPFeature" data-v-ba861f23="" data-v-837f6cca="" data-v-8f4dc553=""><article class="box" data-v-837f6cca=""><h2 class="title" data-v-837f6cca="">AI智能体
-</h2><p class="details" data-v-837f6cca="">豆包构建了一个丰富多彩的 AI 智能体平台，用户不仅能与默认智能体进行日常闲聊、获取信息，还能找到众多专业智能体，解决特定场景下的问题。例如，英语学习助手能纠正发音、讲解语法知识；健身教练可制定个性化健身计划；哲学学者则能与用户探讨人生哲理。
-更值得一提的是，豆包支持用户创建个性化智能体。用户可从预定义模板中选择或从零开始搭建，通过拖拽模块轻松搭建智能体结构，设置初始对话、回复模板以及触发条件，让智能体具备独特个性与专业能力。同时，用户还能为智能体配置知识库，上传文本、图片、音频等资料，让智能体在对话中引用，实现知识动态更新，打造专属的智能伙伴。</p></article></span></div>
-    
-    <div class="grid-3 item" data-v-ba861f23="">
-    <span class="VPLink VPFeature" data-v-ba861f23="" data-v-837f6cca="" data-v-8f4dc553=""><article class="box" data-v-837f6cca=""><h2 class="title" data-v-837f6cca="">AI 编程</h2>
-    <p class="details" data-v-837f6cca="">支持Python、JavaScript/TypeScript、Go、C/C++、Rust、Java、Kotlin、Swift 等 10 余种主流语言；可基于自然语言需求或 UI 草稿图直接生成完整项目框架。选中代码片段 → 点击“解释”，豆包会逐行给出中文注释、时间复杂度与潜在边界条件，适合读源码或面试复习。粘贴报错栈 → 自动定位到文件行号，给出修复 patch，并说明原因；对于 Python 会同时给出 pip 依赖冲突排查建议。</p></article></span></div>
-    <div class="grid-3 item" data-v-ba861f23="">
-    <span class="VPLink VPFeature" data-v-ba861f23="" data-v-837f6cca="" data-v-8f4dc553=""><article class="box" data-v-837f6cca=""><h2 class="title" data-v-837f6cca="">图像生成</h2>
-    <p class="details" data-v-837f6cca="">豆包的图像生成功能为用户打开了一扇创意视觉的大门。它采用先进的 SeedEdit 技术，用户仅需输入简洁的文字描述，如“在樱花树下穿着汉服的少女”，豆包便能迅速生成风格各异、细节丰富的图像，涵盖吉卜力风格、国风、动漫、写实等多种风格，满足不同用户的审美与创作需求。在生成图像时，豆包对细节的把控令人惊叹。以生成中文字体为例，这一直是 AI 图像生成领域的难题，但豆包却能精准呈现，无论是毛笔字的苍劲有力，还是现代字体的简洁清新，都能完美融入图像之中，为海报、表情包、壁纸等设计作品提供美观且专业的字体排版，彻底解决 AI 生图中文显示的技术瓶颈。用户还能对生成的图像进行精细调整，如调整图像尺寸、纵横比、分辨率等参数，以及运用去噪、锐化、颜色编辑等后处理技术，让图像质量更上一层楼，更加贴合实际应用场景。</p></article></span></div>
-      
-    <div class="grid-3 item" data-v-ba861f23="">
-    <span class="VPLink VPFeature" data-v-ba861f23="" data-v-837f6cca="" data-v-8f4dc553=""><article class="box" data-v-837f6cca=""><h2 class="title" data-v-837f6cca="">AI文档</h2>
-    <p class="details" data-v-837f6cca="">豆包的 AI 文档处理能力堪称一绝，它支持多种文件格式，如 Word、PDF、Excel 等，用户上传文档后，豆包能迅速进行内容识别与理解。不管是对文档进行摘要提取，还是针对文档内容进行答疑解惑，豆包都能精准把握文档核心信息，给出高质量的回答。例如，在处理一份市场调研报告时，豆包能够快速梳理出报告的关键结论、市场趋势以及潜在机会点，为用户的决策提供有力支持。此外，豆包还具备智能批注功能，这在多人协作的文档审阅场景中尤为实用。它能基于自然语言处理模型，深刻理解文档语义，智能提供补充信息、逻辑优化及表达建议，宛如一位贴心的“虚拟助手”。同时，支持多人实时在线标注、评论，形成清晰的讨论链，后台自动合并操作，有效避免冲突，大幅提升团队协作效率。</p></article></span></div>
-    
-        <div class="grid-3 item" data-v-ba861f23="">
-    <span class="VPLink VPFeature" data-v-ba861f23="" data-v-837f6cca="" data-v-8f4dc553=""><article class="box" data-v-837f6cca=""><h2 class="title" data-v-837f6cca="">音乐视频生成</h2>
-    <p class="details" data-v-837f6cca="">豆包的音乐生成功能为音乐爱好者和自媒体创作者带来了福音。用户输入主题或歌词，设定音乐风格（如流行、摇滚、民谣等）、情绪（如欢快、悲伤、激昂等）以及音色（如男声、女声、童声等），豆包便能快速生成一首约 1 分钟的原创音乐，支持一键分享至抖音等社交平台，且完全免费。
-在视频生成方面，豆包提供两种强大的模型：PixelDance 和 Seaweed。用户输入与歌曲相关的提示词，如“流行风格的音乐视频，画面中出现年轻情侣在海边漫步”，豆包便能生成契合主题的视频片段。用户还能调整视频画质、时长、风格等参数，让视频更加完美。生成的视频可与音乐无缝结合，打造出专属的音乐视频作品，满足用户在短视频时代的创作需求。</p></article></span></div>
-    
-            <div class="grid-3 item" data-v-ba861f23="">
-    <span class="VPLink VPFeature" data-v-ba861f23="" data-v-837f6cca="" data-v-8f4dc553=""><article class="box" data-v-837f6cca=""><h2 class="title" data-v-837f6cca="">AI 播客</h2>
-    <p class="details" data-v-837f6cca="">基于流式端到端架构，男女双声部采用字节与专业播客主播联合训练的 TTS，支持 15 级情绪强度、自动停顿、附和词与重音强调。先对 PDF/网页进行层级解析，提取标题、段落、图表注释，再用“信息密度再平衡”算法把书面语转成口语化脚本，过滤广告与无关链接。女主持负责提问与过渡，男主持负责核心内容输出；内置 12 种节奏模板，如“科技深潜”“商业故事”“法律案件”，保证叙事节奏多样性。</p></article></span></div>
-
-</div></div></div>
-
-</div></div>
-    
-<footer class="VPFooter" data-v-b2cf3e0b="" data-v-f7fc41f4=""><div class="container" data-v-f7fc41f4=""><p class="copyright" data-v-f7fc41f4="">Copyright © 
-     doubaoai.qingmo.net</p>
-     </div></footer>
-
-</div></div>
-
-</body></html>
+        // 返回顶部按钮
+        const backToTopBtn = document.createElement('button');
+        backToTopBtn.className = 'back-to-top';
+        backToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+        document.body.appendChild(backToTopBtn);
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
